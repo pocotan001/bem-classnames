@@ -1,0 +1,26 @@
+{
+  "name": "bem-classnames",
+  "main": "index.js",
+  "version": "1.0.2",
+  "homepage": "https://github.com/pocotan001/bem-classnames",
+  "authors": [
+    "pocotan001"
+  ],
+  "description": "A utility to manage BEM class names on React",
+  "keywords": [
+    "bem",
+    "classname",
+    "component",
+    "css",
+    "react",
+    "utility"
+  ],
+  "license": "MIT",
+  "ignore": [
+    ".editorconfig",
+    ".gitignore",
+    "node_modules",
+    "package.json",
+    "test.js"
+  ]
+}

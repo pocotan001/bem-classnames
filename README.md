@@ -1,7 +1,9 @@
 # bem-classnames
 
-[![NPM Version](https://img.shields.io/npm/v/bem-classnames.svg)](https://npmjs.org/package/bem-classnames)
-[![Circle CI](https://img.shields.io/circleci/project/pocotan001/bem-classnames.svg)](https://circleci.com/gh/pocotan001/bem-classnames)
+[![CircleCI](https://img.shields.io/circleci/project/pocotan001/bem-classnames.svg)](https://circleci.com/gh/pocotan001/bem-classnames)
+[![npm](https://img.shields.io/npm/v/bem-classnames.svg)](https://npmjs.org/package/bem-classnames)
+[![Bower](https://img.shields.io/bower/v/bem-classnames.svg)](https://github.com/pocotan001/bem-classnames)
+
 
 bem-classnames is a simple utility to manage BEM class names on React.
 
