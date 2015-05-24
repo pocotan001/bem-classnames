@@ -3,13 +3,13 @@
 [![NPM Version](https://img.shields.io/npm/v/bem-classnames.svg)](https://npmjs.org/package/bem-classnames)
 [![Circle CI](https://img.shields.io/circleci/project/pocotan001/bem-classnames.svg)](https://circleci.com/gh/pocotan001/bem-classnames)
 
-``` sh
-npm install bem-classnames
-```
-
 bem-classnames is a simple utility to manage BEM class names on React.
 
 Inspired by [classnames](https://github.com/JedWatson/classnames).
+
+``` sh
+npm install bem-classnames
+```
 
 ## Usage
 
@@ -55,6 +55,9 @@ cx(classes, { a: true, b: true });  // "button foo-a foo-b"
 **with React and ES6**
 
 ``` js
+import React from 'react';
+import cx from 'bem-classnames';
+
 class Button extends React.Component {
   render() {
     let classes = {
