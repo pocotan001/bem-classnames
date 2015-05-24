@@ -32,7 +32,7 @@ var classes = {
 
 cx(classes, { color: 'green', block: true });  // "button button--green button--block"
 cx(classes, { disabled: true });  // "button is-disabled"
-cx(classes, 'foo', 'bar baz');  // "button foo bar baz"
+cx(classes, 'a b', ['c', 'd']);  // "button a b c d"
 ```
 
 **Custom prefix**
