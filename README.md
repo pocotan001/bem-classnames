@@ -1,7 +1,7 @@
 # bem-classnames
 
 [![NPM Version](https://img.shields.io/npm/v/bem-classnames.svg)](https://npmjs.org/package/bem-classnames)
-[![Circle CI](https://circleci.com/gh/pocotan001/bem-classnames.svg?style=shield)](https://circleci.com/gh/pocotan001/bem-classnames)
+[![Circle CI](https://img.shields.io/circleci/project/pocotan001/bem-classnames.svg)](https://circleci.com/gh/pocotan001/bem-classnames)
 
 ``` sh
 npm install bem-classnames
