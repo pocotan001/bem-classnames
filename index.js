@@ -15,16 +15,46 @@
   };
 
   /**
+   * toType([]) -> 'array'
+   *
+   * @param {*} object
+   * @return {string}
+   */
+  function toType(object) {
+    return Object.prototype.toString.call(object).slice(8, -1).toLowerCase();
+  }
+
+  /**
+   * uniq(['a', 'b', 'a', 'b']) -> ['a', 'b']
+   *
    * @param {Array} array
    * @return {Array}
    */
   function uniq(array) {
     return array.filter(function(el, i) {
-      return !!(el.trim()) && array.indexOf(el) === i;
+      return array.indexOf(el) === i;
     });
   }
 
   /**
+   * exclude([null, undefined, 1, 0, true, false, '', 'a', ' b  ']) -> ['a', 'b']
+   *
+   * @param {Array} array
+   * @return {string[]}
+   */
+  function exclude(array) {
+    return array
+      .filter(function(el) {
+        return typeof el === 'string' && el.trim() !== '';
+      })
+      .map(function(className) {
+        return className.trim();
+      });
+  }
+
+  /**
+   * split(' a  b  ') -> ['a', 'b']
+   *
    * @param {string} className
    * @return {string[]}
    */
@@ -33,6 +63,8 @@
   }
 
   /**
+   * toString(['a', 'b']) -> 'a b'
+   *
    * @param {string[]} classNames
    * @return {string}
    */
@@ -41,6 +73,8 @@
   }
 
   /**
+   * detectPrefix('modifiers', { name: 'foo' }) -> 'foo--'
+   *
    * @param {string} prefixName
    * @param {Object} classes
    * @return {string}
@@ -52,12 +86,16 @@
   }
 
   /**
+   * getClassNamesByProps(['a'], { a: 'foo' }, '-') -> [ '-foo' ]
+   *
    * @param {string[]} propNames
    * @param {Object} props
-   * @param {string} prefix
+   * @param {string} [prefix]
    * @return {string[]}
    */
   function getClassNamesByProps(propNames, props, prefix) {
+    prefix = prefix || '';
+
     return propNames
       .filter(function(name) {
         return !!props[name];
@@ -81,13 +119,16 @@
     }
 
     Object.keys(classes).forEach(function(name) {
-      if (typeof classes[name] === 'string') {
+      if (toType(classes[name]) === 'string') {
         classNames = classNames.concat(split(classes[name]));
       } else {
         args.forEach(function (arg) {
-          switch (!!arg && typeof arg) {
+          switch (toType(arg)) {
             case 'string':
               classNames = classNames.concat(split(arg));
+              break;
+            case 'array':
+              classNames = classNames.concat(arg);
               break;
             case 'object':
               classNames = classNames.concat(
@@ -100,7 +141,7 @@
       }
     });
 
-    return toString(uniq(classNames));
+    return toString(exclude(uniq(classNames)));
   }
 
   cx.prefixes = prefixes;
