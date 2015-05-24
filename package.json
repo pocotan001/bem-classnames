@@ -1,0 +1,26 @@
+{
+  "name": "bem-classnames",
+  "version": "1.0.0",
+  "description": "A utility to manage BEM class names on React",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pocotan001/bem-classnames.git"
+  },
+  "keywords": [
+    "bem",
+    "classname",
+    "component",
+    "css",
+    "react",
+    "utility"
+  ],
+  "author": "pocotan001",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^2.2.5"
+  }
+}
