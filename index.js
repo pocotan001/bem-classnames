@@ -28,6 +28,28 @@
   }
 
   /**
+   * isString("foo") -> true
+   * isString([]) -> false
+   *
+   * @param {*} object
+   * @return {boolean}
+   */
+  function isString(object) {
+    return toType(object) === 'string';
+  }
+
+  /**
+   * isBoolean(false) -> true
+   * isBoolean({}) -> false
+   *
+   * @param {*} object
+   * @return {boolean}
+   */
+  function isBoolean(object) {
+    return toType(object) === 'boolean';
+  }
+
+  /**
    * uniq(['a', 'b', 'a', 'b']) -> ['a', 'b']
    *
    * @param {Array} array
@@ -48,7 +70,7 @@
   function exclude(array) {
     return array
       .filter(function(el) {
-        return toType(el) === 'string' && el.trim() !== '';
+        return isString(el) && el.trim() !== '';
       })
       .map(function(className) {
         return className.trim();
@@ -104,7 +126,7 @@
         return !!props[name];
       })
       .map(function(name) {
-        return prefix + (toType(props[name]) === 'boolean' ? name : props[name]);
+        return prefix + (isBoolean(props[name]) ? name : props[name]);
       });
   }
 
@@ -123,7 +145,7 @@
     var classNames = [];
 
     Object.keys(classes).forEach(function(name) {
-      if (toType(classes[name]) === 'string') {
+      if (isString(classes[name])) {
         push.apply(classNames, split(classes[name]));
       } else {
         args.forEach(function (arg) {
