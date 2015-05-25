@@ -16,6 +16,7 @@
 
   var push  = Array.prototype.push;
   var slice = Array.prototype.slice;
+  var toString = Object.prototype.toString;
 
   /**
    * toType([]) -> 'array'
@@ -24,30 +25,21 @@
    * @return {string}
    */
   function toType(object) {
-    return Object.prototype.toString.call(object).slice(8, -1).toLowerCase();
+    return toString.call(object).slice(8, -1).toLowerCase();
   }
 
   /**
-   * isString("foo") -> true
-   * isString([]) -> false
+   * is.array([]) -> true
    *
    * @param {*} object
-   * @return {boolean}
+   * @return {string}
    */
-  function isString(object) {
-    return toType(object) === 'string';
-  }
-
-  /**
-   * isBoolean(false) -> true
-   * isBoolean({}) -> false
-   *
-   * @param {*} object
-   * @return {boolean}
-   */
-  function isBoolean(object) {
-    return toType(object) === 'boolean';
-  }
+  var is = {};
+  ['string', 'boolean', 'array', 'object'].forEach(function(type) {
+    is[type] = function(object) {
+      return toType(object) === type;
+    };
+  });
 
   /**
    * uniq(['a', 'b', 'a', 'b']) -> ['a', 'b']
@@ -70,7 +62,7 @@
   function exclude(array) {
     return array
       .filter(function(el) {
-        return isString(el) && el.trim() !== '';
+        return is.string(el) && el.trim() !== '';
       })
       .map(function(className) {
         return className.trim();
@@ -88,13 +80,13 @@
   }
 
   /**
-   * toString(['a', 'b']) -> 'a b'
+   * toClassName(['a', 'b']) -> 'a b'
    *
-   * @param {string[]} classNames
+   * @param {string[]} names
    * @return {string}
    */
-  function toString(classNames) {
-    return classNames.join(' ').trim();
+  function toClassName(names) {
+    return names.join(' ').trim();
   }
 
   /**
@@ -126,7 +118,7 @@
         return !!props[name];
       })
       .map(function(name) {
-        return prefix + (isBoolean(props[name]) ? name : props[name]);
+        return prefix + (is.boolean(props[name]) ? name : props[name]);
       });
   }
 
@@ -136,7 +128,6 @@
    * @return {string}
    */
   function cx(classes/* , [...props|className] */) {
-
     if (!classes) {
       return '';
     }
@@ -145,7 +136,7 @@
     var classNames = [];
 
     Object.keys(classes).forEach(function(name) {
-      if (isString(classes[name])) {
+      if (is.string(classes[name])) {
         push.apply(classNames, split(classes[name]));
       } else {
         args.forEach(function (arg) {
@@ -166,7 +157,7 @@
       }
     });
 
-    return toString(exclude(uniq(classNames)));
+    return toClassName(exclude(uniq(classNames)));
   }
 
   cx.prefixes = prefixes;
