@@ -14,6 +14,9 @@
     states: 'is-'
   };
 
+  var push  = Array.prototype.push;
+  var slice = Array.prototype.slice;
+
   /**
    * toType([]) -> 'array'
    *
@@ -111,12 +114,13 @@
    * @return {string}
    */
   function cx(classes/* , [...props|className] */) {
-    var args = Array.prototype.slice.call(arguments).slice(1);
-    var classNames = [];
 
     if (!classes) {
       return '';
     }
+
+    var args = slice.call(arguments).slice(1);
+    var classNames = [];
 
     Object.keys(classes).forEach(function(name) {
       if (toType(classes[name]) === 'string') {
@@ -125,15 +129,14 @@
         args.forEach(function (arg) {
           switch (toType(arg)) {
             case 'string':
-              classNames = classNames.concat(split(arg));
+              push.apply(classNames, split(arg));
               break;
             case 'array':
-              classNames = classNames.concat(arg);
+              push.apply(classNames, arg);
               break;
             case 'object':
-              classNames = classNames.concat(
-                getClassNamesByProps(classes[name], arg, detectPrefix(name, classes))
-              );
+              var names = getClassNamesByProps(classes[name], arg, detectPrefix(name, classes));
+              push.apply(classNames, names);
               break;
             default:
           }
