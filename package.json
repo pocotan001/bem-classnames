@@ -1,6 +1,6 @@
 {
   "name": "bem-classnames",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A utility to manage BEM class names on React",
   "main": "index.js",
   "scripts": {
