@@ -6,7 +6,7 @@
   "authors": [
     "pocotan001"
   ],
-  "description": "A utility to manage BEM class names on React",
+  "description": "A simple utility to manage BEM class names on React",
   "keywords": [
     "bem",
     "classname",
