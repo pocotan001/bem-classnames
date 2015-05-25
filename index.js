@@ -80,12 +80,12 @@
   }
 
   /**
-   * classNamesToString(['a', 'b']) -> 'a b'
+   * arrayToString(['a', 'b']) -> 'a b'
    *
    * @param {string[]} names
    * @return {string}
    */
-  function classNamesToString(names) {
+  function arrayToString(names) {
     return names.join(' ').trim();
   }
 
@@ -157,7 +157,7 @@
       }
     });
 
-    return classNamesToString(exclude(uniq(classNames)));
+    return arrayToString(exclude(uniq(classNames)));
   }
 
   cx.prefixes = prefixes;
