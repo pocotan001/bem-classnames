@@ -48,7 +48,7 @@
   function exclude(array) {
     return array
       .filter(function(el) {
-        return typeof el === 'string' && el.trim() !== '';
+        return toType(el) === 'string' && el.trim() !== '';
       })
       .map(function(className) {
         return className.trim();
@@ -104,7 +104,7 @@
         return !!props[name];
       })
       .map(function(name) {
-        return prefix + (typeof props[name] === 'boolean' ? name : props[name]);
+        return prefix + (toType(props[name]) === 'boolean' ? name : props[name]);
       });
   }
 
