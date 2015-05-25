@@ -83,3 +83,39 @@ React.render(
 
 // "button button--green button--xl a b is-disabled"
 ```
+
+**for manage the elements of BEM**
+
+``` js
+class Button extends React.Component {
+  render() {
+    let classes = {
+      button: {
+        name: 'button',
+        modifiers: ['color', 'size'],
+        states: ['disabled']
+      },
+      button__inner: {
+        name: 'button__inner',
+        modifiers: ['align']
+      }
+    };
+
+    return (
+      <button className={cx(classes.button, this.props)}>
+        <span className={cx(classes.button__inner, this.props)}>
+          {this.props.children}
+        </span>
+      </button>
+    );
+  }
+}
+
+React.render(
+  <Button color="green" align="center">Alo!</Button>,
+  document.getElementById('example')
+);
+
+// button -> "button button--green"
+// span -> "button__inner button__inner--center"
+```
