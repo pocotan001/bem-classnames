@@ -35,9 +35,9 @@
    * @return {string}
    */
   var is = {};
-  ['string', 'boolean', 'array', 'object'].forEach(function(name) {
-    is[name] = function(object) {
-      return toType(object) === name;
+  ['string', 'boolean', 'array', 'object'].forEach(function(type) {
+    is[type] = function(object) {
+      return toType(object) === type;
     };
   });
 
@@ -80,12 +80,12 @@
   }
 
   /**
-   * arrayToString(['a', 'b']) -> 'a b'
+   * toClassName(['a', 'b']) -> 'a b'
    *
    * @param {string[]} names
    * @return {string}
    */
-  function arrayToString(names) {
+  function toClassName(names) {
     return names.join(' ').trim();
   }
 
@@ -157,7 +157,7 @@
       }
     });
 
-    return arrayToString(exclude(uniq(classNames)));
+    return toClassName(exclude(uniq(classNames)));
   }
 
   cx.prefixes = prefixes;
