@@ -102,7 +102,7 @@ class Button extends React.Component {
     };
 
     return (
-      <button className={cx(classes.button, this.props)}>
+      <button className={cx(classes.button, this.props, this.props.className)}>
         <span className={cx(classes.button__inner, this.props)}>
           {this.props.children}
         </span>
