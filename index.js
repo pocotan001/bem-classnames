@@ -124,7 +124,7 @@
 
     Object.keys(classes).forEach(function(name) {
       if (toType(classes[name]) === 'string') {
-        classNames = classNames.concat(split(classes[name]));
+        push.apply(classNames, split(classes[name]));
       } else {
         args.forEach(function (arg) {
           switch (toType(arg)) {
