@@ -30,6 +30,7 @@ describe('cx', function() {
   });
 
   it('supports a string of class names', function() {
+    assert.equal(cx({ name: 'button' }, 'a'), 'button a');
     assert.equal(cx(classes, 'a'), 'button a');
     assert.equal(cx(classes, 'a', 'b c'), 'button a b c');
   });

@@ -136,24 +136,31 @@
     var classNames = [];
 
     Object.keys(classes).forEach(function(name) {
-      if (is.string(classes[name])) {
-        push.apply(classNames, split(classes[name]));
-      } else {
-        args.forEach(function (arg) {
-          switch (toType(arg)) {
-            case 'string':
-              push.apply(classNames, split(arg));
-              break;
-            case 'array':
-              push.apply(classNames, arg);
-              break;
-            case 'object':
+      switch (toType(classes[name])) {
+        case 'string':
+          push.apply(classNames, split(classes[name]));
+          break;
+        case 'array':
+          args.forEach(function (arg) {
+            if (is.object(arg)) {
               var names = getClassNamesByProps(classes[name], arg, detectPrefix(name, classes));
               push.apply(classNames, names);
-              break;
-            default:
-          }
-        });
+            }
+          });
+          break;
+        default:
+      }
+    });
+
+    args.forEach(function (arg) {
+      switch (toType(arg)) {
+        case 'string':
+          push.apply(classNames, split(arg));
+          break;
+        case 'array':
+          push.apply(classNames, arg);
+          break;
+        default:
       }
     });
 
