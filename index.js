@@ -1,5 +1,8 @@
 (function(global, factory) {
-  if (typeof define === 'function' && define.amd) {
+  if (typeof Package !== 'undefined') {
+    cx = factory();
+  }
+  else if (typeof define === 'function' && define.amd) {
     define([], factory); // AMD
   } else if (typeof exports === 'object') {
     module.exports = factory(); // CommonJS
